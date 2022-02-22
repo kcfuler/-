@@ -1,0 +1,13 @@
+#head1 {
+    text-align: center;
+    font-weight: 400;
+}
+p {
+    text-indent: 2em;
+}
+body {
+    font: 16px/28px 'Microsoft YaHei';
+}
+#weatherWeb1 {
+    text-decoration:none;
+}

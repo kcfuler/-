@@ -1,0 +1,149 @@
+.w {
+    width:1200px;
+    margin: 0 auto;
+}
+
+.header{
+    height:84px;
+    border-bottom: 2px solid #c81623;
+}
+
+.header .logo{
+    padding-top:16px;
+}
+
+.registerarea {
+    margin-top:10px;
+    height:522px;
+    border:1px solid #dfdfdf;
+}
+
+.registerarea .box_hd{
+    height:42px;
+    padding:0 10px;
+    background-color: #ececec;
+    line-height: 42px;
+    font-size: 18px;
+    color:#333;
+}
+
+.registerarea .box_hd .login{
+    float:right;
+    font-size:14px;
+}
+
+.registerarea .box_hd .login a{
+    color:#c81623;
+}
+
+.registerarea .reg_form {
+    width:600px;
+    margin:50px auto 0;
+    /* background-color: pink; */
+    /* text-align: center; */
+}
+
+/* .registerarea .reg_form ul li {
+     margin:0 auto;
+} */
+
+.registerarea .reg_form ul li label{
+    display: inline-block;
+    text-align: right;
+    /* 这里很重要，不然很难对齐 */
+    width:88px;
+    font-size:14px;
+    color:#4c4c4c;
+}
+.registerarea .reg_form ul li .inp{
+    width: 238px;
+    height: 32px;
+    border: 1px solid #ccc;
+}
+
+.registerarea .reg_form ul li .error {
+    color:#c81623;
+    font-size:12px;
+}
+.registerarea .reg_form ul li .error_icon
+,.registerarea .reg_form ul li .success_icon{ 
+display:inline-block;
+margin-left: 10px;
+width: 20px;
+height: 20px;
+vertical-align: middle;
+background: url(../images/error.png);
+}
+
+.registerarea .reg_form ul li .success{
+    color:green;
+    font-size:12px;
+}
+
+.registerarea .reg_form ul li .success_icon{
+    background: url(../images/success.png);
+}
+
+.registerarea .safe {
+    margin-left:170px;
+    font-size:12px;
+    color:#ccc;
+}
+
+.registerarea .safe em{
+   padding:0 12px;
+   margin-left:2px;
+   color:#fff;
+}
+
+.registerarea .safe .weak{
+    background-color: #de1111;
+}
+
+.registerarea .safe .moderate{
+background-color: #40b83f;
+}
+
+.registerarea .safe .strong{
+    background-color: #f79100;
+}
+
+.aggre {
+    padding-left:100px;
+    font-size:12px;
+    color:#333;
+}
+
+.aggre .sumit{
+    vertical-align: middle;
+}
+
+.aggre a{
+    color:#93caf0;
+}
+
+.btn{
+width: 200px;
+height: 34px;
+margin:30px 100px;
+background-color: #c81623;
+color:#fff;
+}
+
+.footer{
+    margin-top:500px ;
+}
+
+.mod_copyright {
+    text-align: center;
+    padding-top: 20px;
+}
+.links {
+    margin-bottom: 15px;
+}
+.links a {
+    margin: 0 3px;
+}
+.copyright {
+    line-height: 20px;
+}

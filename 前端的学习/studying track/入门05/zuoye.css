@@ -1,0 +1,12 @@
+*{
+    margin:0;
+    padding:0;
+}
+.box_qiang{
+    width: 265px;
+    height:412px;
+    background-color: skyblue;
+}
+.box_qiang img{
+    /* width:100%; */
+}
