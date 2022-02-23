@@ -630,7 +630,7 @@ font-style: 字体样式；
 
   网页中的坐标y轴向下
 
-#### transform语法
+#### translate语法
 
 ```html
 transform:translate(x,y);//或者分开写
@@ -639,7 +639,197 @@ transform:translateY(n);
 //移动位置
 ```
 
+- translate最大的优点：不会影响其它元素
+- 对**行内元素**没有效果
+- translate中的百分比效果是相对于自身元素的大小
+- 定义2D转换中的移动，沿着x和y轴移动元素
+
+产生的效果类似于相对定位+z-index提高等级
+
+##### 让一个盒子水平居中
+
+```html
+//在定位的前提下
+position:absolute
+top:50%;//这里是父盒子的50%
+left:50%;
+transform:translate(-50%,-50%);
+//这里指的又是自己的50%，实现盒子的水平居中
+//使用margin:auto auto ;只能实现相对于父盒子水平居中
+```
 
 
 
+#### 2d旋转之rotate
+
+```html
+transform:rotate(ndeg);
+//也就是顺时针旋转 n degree(角度)；
+//负数的值就为逆时针旋转
+
+```
+
+- 可以和transition：all 0.3s;这样的渐变效果实现动画的效果
+
+#### 三角的另一个方法
+
+利用一个正方形来旋转 45deg
+
+然后只显示两边，就可以实现一个两边的旋转，得到一个小三角
+
+可以不用字体图标了
+
+#### 设置旋转的中心点
+
+```html
+transform-origin:x y;
+//这里 x y 是指旋转的中心点
+//默认是50% 50% ，定到中心
+//可以跟方位名词 left bottom top right 调整到四个角
+//也可以使用像素（px），像素是相对于坐标原点而言的
+```
+
+##### 旋转案例
+
+- 给父盒子加一个伪类元素
+
+- 给伪类元素加上属性，记住它的显示模式，再给它加上旋转的中心，过渡效果
+
+- 给父盒子加上一个：hover的选中效果
+
+  ```html
+  .box1:hover::before{
+  
+  }
+  在里面添加你想要的变换效果
+  ```
+
+#### 实现元素的放大和缩小
+
+```html
+transform:scale(x,y);
+//里面给的是数字不跟单位，就是倍数的意思，1就是一倍，2，就是二倍
+//实现水平、竖直方向的缩放
+//等比例缩放,对x、y都有效果
+transform:scale(n);
+//缩小的方法
+transform:scale(0.n);
+transform:scale(0.2,0.3);
+```
+
+注意点：
+
+- 与直接修改宽度和高度的区别
+
+  直接修改会导致盒子体积的变化，影响其它盒子的布局
+
+- 体积变化的时候不会影响其他盒子
+
+- **可以设置过渡、可以调整变化的中心点（）**，调整中心的方法和前面的一样
+
+#### 图片的放大案例
+
+- 可以给父盒子加上一个overflow:hidden;
+
+  防止超出盒子，影响视觉效果
+
+- 一般情况下这样的变化都会加上一个过渡，看着更舒服
+
+#### 分页按钮制作
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box ul li{
+            float: left;
+            margin-left:10px;
+            width: 50px;
+            height: 50px;
+            border: 1px solid pink;
+            border-radius: 25px;
+            text-align: center;
+            line-height: 50px;
+            color:aqua;
+            font:500 15px;
+            text-decoration: none;
+            list-style:none;
+            transition: all 1s;
+        }
+        .box ul li:hover{
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+</html>
+```
+
+
+
+#### 综合写法
+
+```html
+tranform:translate() rotate() transform-origin:x,y scale();
+//顺序会影响最后的效果
+当我们有位移和其他的属性的时候，记得位移在前（旋转会改变坐标轴的方向）
+```
+
+#### 总结
+
+简单而言就是用css来进行动效交互的设计，**不会对布局有影响**，很方便
+
+### css3动画
+
+可以通过设置多个节点来精确控制一个或一组动画，常用来实现复杂的动画效果
+
+- 相比过渡，动画能实现实现更为复杂的效果
+
+#### 动画的基本使用
+
+1. 定义动画
+
+   动画序列：
+
+   - 0%是动画的开始，100%是动画的完成。这样的规则就是动画序列
+   - 在@keyframes中规定某项css样式，就能创建由当前样式逐渐改为新样式的动画效果
+   - 动画是使一种样式逐渐变化为另一种样式的效果。可以改变**任意多的样式**  **任意多的次数**
+   - 请用百分比来规定变化发生的事件，或用关键词“from”和“to”，等同于0%和100%。
+
+2. 使用动画
+
+   ```html
+   @keyframes name{
+   0%{
+      样式
+   }
+   100%{
+      样式
+   }
+   }//定义的动画
+   //在0%和100%之间可以设置不限数量（但是百分比最多只有一百零一个节点。。）的节点
+   
+   //调用 
+   animation-name:name;//动画名称
+   animation-duration:n s;//动画的持续时间
+   ```
+
+   **注意**：
+
+   1. 动画执行完毕之后里面对应的样式也会消失
 
