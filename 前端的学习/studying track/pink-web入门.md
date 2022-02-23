@@ -833,3 +833,81 @@ tranform:translate() rotate() transform-origin:x,y scale();
 
    1. 动画执行完毕之后里面对应的样式也会消失
 
+#### 动画属性
+
+| 属性                      | 效果                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| @keyframes                | 定义动画                                                     |
+| animation                 | 所有动画属性的集合                                           |
+| animation-name            | 调用animation动画的名称                                      |
+| animation-duration        | 动画的持续时间                                               |
+| animation-timing-function | 规定动画的速度曲线，默认是ease                               |
+| animation-delay           | 规定动画的延迟播放，默认是0                                  |
+| animation-iteration-count | 规定动画的播放次数                                           |
+| animation-direction       | 规定动画是否在下一周期逆向播放，默认是normal，alternate逆播放 |
+| animation-play-state      | 规定动画是否在运行或暂停。默认是running,还有pause            |
+| animation-fill-mode       | 规定动画结束后状态，保持forwards回到起始backwards            |
+
+#### 动画简写
+
+```html
+animation:动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画起始或者结束的状态
+```
+
+注意：
+
+1. 简写里面不包括 animation-play-state
+2. 暂停动画：animation-play-state:paused;经常和鼠标经过等配合使用
+3. 想要动画反方向走回来，而不是闪现过来：animation-direction:alternate
+4. 盒子动画结束后，停在结束位置：animation-fill-mode:forwards.
+
+#### 热点图案例
+
+- 这里的波纹用阴影来实现
+
+- 用几个盒子来模拟逐帧的动画效果
+
+  可以用capacity属性（透明度），来模拟渐变的效果
+
+  可以用decay属性来调整播放的时间，使得动画的播放有时差
+
+  让它们体现逐帧切换的效果
+
+- 用定位来保证它们叠加在一个位置上
+
+- 用属性选择器可以方便的实现类型的选择
+
+  选择的时候要**注意选择器权重**
+
+**注意**：
+
+1. 在放大的时候不用scale的原因：**在定位居中的前提下**，因为scale的话可能会让阴影的位置发生偏移，导致动画出现不太好的效果
+2. 定位到同一个位置的时候，盒子之间并不会发生挤占的问题，可能是自动分配了z-index的值
+
+#### 速度曲线的细节
+
+| 值          | 描述                                         |
+| ----------- | -------------------------------------------- |
+| linear      | 动画从头到尾速度是相同的                     |
+| ease        | 默认。动画从低速开始，然后加快，在结束前变慢 |
+| ease-in     | 动画以低速开始                               |
+| ease-out    | 动画以低速结束                               |
+| ease-in-out | 低俗开始和结束                               |
+| steps       | 指定了时间函数中的间隔数量（步长）           |
+
+##### 打字机效果
+
+```html
+write-space:nowrap;//强制一行显示
+staps(n);//n可以为字数
+从另一个方面来说，它可以用来实现定格动画的效果
+overflow:hidden;//将没显示出来的文字隐藏
+在动画里面可以逐渐增加盒子的长度，得到一个逐渐显示的效果
+```
+
+##### 北极熊-视差滚动效果
+
+- 利用一个盒子来进行播放，利用steps（）来播放图片的每一
+
+  帧，将动画的播放时间缩短，得到动画的效果
+
