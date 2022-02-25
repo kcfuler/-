@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box ul li { 
+            perspective: 500px;
+            list-style:none;
+        }
+        .box3{
+            /* 这里的属性直接给li会出问题，要么没有视距的效果，要么就是旋转的时候效果会变得很奇怪 */
+            position: relative;
+            width:200px;
+            height: 100px;
+            margin:200px auto;
+            transform-style: preserve-3d;      
+            transition: all 0.5s;
+        }
+        .box3 .box1,
+        .box3 .box2 {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height:100%;
+            text-align: center;
+            line-height: 100px;
+            color:deepskyblue;
+            font-size:16px;
+        }
+        .box3 .box1 {
+            background-color: pink;
+            transform: translateZ(50px);
+        }
+        .box3 .box2{
+            background-color: skyblue;
+            /* 如果有移动或者其它样式，要先写移动 */
+            transform:translateY(50px) rotateX(-90deg);
+        }
+        .box ul li .box3:hover{
+            transform: rotateX(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <div class="box3">
+                    <div class="box1">正面</div>
+                    <div class="box2">底面</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
