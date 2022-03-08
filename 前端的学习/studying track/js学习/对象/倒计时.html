@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function countDown(time) {
+            var nowTime = +new Date();
+            var inputTime = +new Date(time);
+            var times = (inputTime - nowTime) / 1000;
+            var d = parseInt(times / 60 / 60 / 24);
+            d > 10 ? d = d : d = '0' + d;
+            var h = parseInt(times / 60 / 60 % 24);
+            h > 10 ? h = h : h = '0' + h;
+            var s = parseInt(times % 60);
+            s > 10 ? s = s : s = '0' + s;
+            return d + '天' + h + '时' + s + '秒';
+        }
+        console.log(countDown('2022-3-15 00:00:00'));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

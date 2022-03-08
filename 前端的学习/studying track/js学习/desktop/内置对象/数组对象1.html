@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 创建数组的两种方式
+        // 1. 利用数组字面量
+        var arr = [1, 2, 3];
+        // 2.通过new Array();
+        // var arr1 = new Array(2);//这里的2的数组是指提前给数组加上了两个空的元素
+        var arr1 = new Array(2, 34);//这样就相当于字面量的创建方式
+        console.log(arr1);
+        // 检测是否为数组
+        // 1.instanceof 运算符 用来检测是否为数组
+        var arr2 = [12, 3, 23, 23, 23, 21, 321];
+        console.log(arr2 instanceof Array);//可以用来确保自己封装的函数的执行形式
+        // 2.Array.isArray('canshu ');
+        console.log(Array.isArray(arr2));
+        // 优先度高于 intanceof ，但是新特性，兼容性可能有点问题
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
