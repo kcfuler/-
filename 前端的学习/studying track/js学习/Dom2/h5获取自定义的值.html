@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div data-index="20"></div>
+    <!-- //另外data 和 date 要分清楚 -->
+    <script>
+        // var div = document.getElementsByTagName('div');
+        var div = document.querySelector('div');
+        // querySelector和getElemenByTagName是有区别的，这里如果使用的是后者获取不到属性
+        div.setAttribute('data-time', 20);
+        console.log(div);
+        console.log(div.getAttribute('date-index'));
+        console.log(div.dataset);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- //表格可以有三个部分组成：表头（thead），表体（tbody），表数据（tr） -->
+    <table>
+        <thead>
+            <th>标题</th>
+        </thead>
+        <tbody>
+            <td>
+                <tr>内容</tr>
+                <tr>内容</tr>
+                <tr>内容</tr>
+                <tr>内容</tr>
+            </td>
+            <td>
+                <tr>内容</tr>
+                <tr>内容</tr>
+                <tr>内容</tr>
+            </td>
+        </tbody>
+    </table>
+    <script>
+        // 1. 获取元素
+        var trs = document.querySelector('tbody').querySelectorAll('tr');
+        console.log(trs);
+    </script>
+</body>
+
+</html>

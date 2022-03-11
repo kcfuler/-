@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button id="btn">
+        刷新系统时间
+    </button>
+    <div id="time1">显示时间</div>
+    <script>
+        var timer = document.getElementById('time1');
+        //一定要注意语法的细节，不然很难 找bug，这选择器里面必须是字符串；
+        var btn = document.getElementById('btn');
+        btn.onclick = function () {
+            timer.innerText = getDate();
+        }
+        function getDate() {
+            var da = new Date();
+            // var day = da.getDay();
+            var year = da.getFullYear();
+            var day = da.getDate();
+            var monuth = da.getMonth() + 1;
+            return '今天是' + year + '年' + monuth + '月' + day + '日';
+        }
+    </script>
+
+</body>
+
+</html>

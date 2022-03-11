@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #ccc;
+        }
+
+        table th,
+        td {
+            border: 1px solid #ccc;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        table th {
+            background-color: #ccc;
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>分数</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        var stu = [
+            {
+                name: 'nick',
+                disciplin: 'javascript',
+                score: 99
+            },
+            {
+                name: 'leon',
+                disciplin: 'javascript',
+                score: 98
+            },
+            {
+                name: 'frank',
+                disciplin: 'javascript',
+                score: 88
+            }
+        ]
+        var tbody = document.querySelector('tbody');
+        for (var i = 0; i < stu.length; i++) {
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for (var k in stu[i]) {
+                var td = document.createElement('td');
+                td.innerHTML = stu[i][k];
+                //因为 k in stu[i] 这个语法 是用于在对象里面遍历属性，而这里的stu[i]带表的就是每一对象，这样添加就可以完成表格的填充了
+                tr.appendChild(td);
+            }
+            var td = document.createElement('td');
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+            tr.appendChild(td);
+        }
+        var as = document.querySelectorAll('a');
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+
+                //    还是要注意这个移除节点的语法规范
+                //    需要的是删除元素的父节点来移除它的子节点，写出来的两个关键点必须要有，你要删除的节点是谁，它的父节点又是谁，怎样定位
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+
+</html>

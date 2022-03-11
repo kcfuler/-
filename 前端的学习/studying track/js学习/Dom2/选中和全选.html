@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <input type="radio" id="All">
+    <div id="all-1">
+        <input type="radio">
+        <input type="radio">
+        <input type="radio">
+        <input type="radio">
+    </div>
+    <script>
+        // 1. 选取元素
+        var al = document.getElementById('All');
+        var bts = document.getElementById('all-1').getElementsByTagName('input');
+        // console.log(bts);
+        al.onclick = function () {
+            if (this.checked) { this.checked = 'unchecked'; }
+            for (var i = 0; i < bts.length; i++) {
+                bts[i].checked = this.checked;
+            }
+        }
+        for (var i = 0; i < bts.length; i++) {
+            bts[i].onclick = function () {
+                var flag = true;
+                for (var i = 0; i < bts.length; i++) {
+                    if (!bts[i].checked) {
+                        flag = false;
+                    }
+                    al.checked = flag;
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

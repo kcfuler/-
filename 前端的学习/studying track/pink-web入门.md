@@ -1256,17 +1256,6 @@ var = '1223123'-'1231'
 
 这里的运算结果就是两个字符串里面的数字相减
 
-<<<<<<< HEAD
-#### 转换为布尔型
-
-`boolean(var)` 将其它类型转换为布尔型
-
-- 代表空、否定的值会被转换为false，如“”、 0、NaN、null、undefined
-- 其余的值都为true
-
-### 运算符
-
-=======
 
 
 #### 转换为布尔型
@@ -1286,7 +1275,6 @@ var = '1223123'-'1231'
 
 
 
->>>>>>> 270fed9590008cd55e534f901816c513f5f9b2b7
 #### 算数运算符
 
 | 符号 | 属性 | 用法 |
@@ -1297,177 +1285,6 @@ var = '1223123'-'1231'
 | /    | 除   |      |
 | %    | 取模 |      |
 
-<<<<<<< HEAD
-在写的时候尽量在符号左右加上空格（比较优雅）
-
-- 取模运算符的作用之一就是可以判断能否整除
-
-#### 自增/减运算符
-
-- 运算符必须和变量结合使用
-
-#### 判断运算符
-
-- 比较特别的是 === ，！==，表示需要数据类型和值同时满足才为真
-
-#### 逻辑运算符
-
-- &&
-
-  在对表达式判断时 如果 `表达式1 && 表达式2 `
-
-  如果表达式1为真，则返回第二个表达式的值
-
-  如果为假，则返回第一个表达式的值
-
-- ||
-
-  
-
-- !
-
-- **短路**：如果有一个结果可以判断出结果，就不再向后计算
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 
 
 在写的时候尽量在符号左右加上空格（比较优雅）
@@ -1725,49 +1542,1516 @@ function name {
 ```
 
 - 在执行结束之后相当于将执行的结果赋值给函数名
->>>>>>> 270fed9590008cd55e534f901816c513f5f9b2b7
+- 函数的返回值也是一个终止函数，在一个函数中遇到return语句，执行完毕后就会直接退出函数，而后面的语句不会再执行，return只会返回一个值
+
+```js
+return [1,2,3,4,5];
+//可以直接让return返回一个数组的值
+//这里可以感受到万物皆对象的这个概念，因为变量也是对象，函数返回也是对象
+```
+
+- 如果一个函数没有返回值，而用它来赋值的话，得到的就是undefined的量（这自然是当然了）
+
+- arguments
+
+  当我们不确定有多少个参数传递的时候，就可以用arguments来获取。在js中，arguments实际上他是当前函数的一个内置对象，用于存储所有传递进来的实参（是一个数组的形式）
+
+  - 伪数组
+    1. 具有数组的length属性
+    2. 按照索引的方式进行存储
+    3. 没有一些数组的方法：pop（）、push ( )等方法
+
+- **函数可以相互调用**
+
+  ```js
+  //函数有两种声明方式
+  //1.常规声明
+  function name{
+  
+  }
+  //2.函数表达式 （匿名函数）,相当于给函数的另一个命名方式
+  //效果和前面的效果差距不大，都是对象
+  var name =function(aru)
+  {
+      
+  }
+  var fun=function(aru){
+      console.log('');
+      console.log('');
+  }
+  
+  
+  ```
+
+
+
+### 作用域
+
+是为了提高程序的可靠性，减少命名冲突
+
+- 作用域（es6之前）
+
+  1. 全局作用域
+
+     整个js标签或者一个单独的js文件
+
+  2. 局部作用域
+
+     在函数内部就是局部作用域
+
+  3. 块级作用域
+
+     就是和c++类似，在一个花括号里面声明的变量只对这个花括号里面的方法和函数生效，在括号外不能调用
+
+**全局变量会有覆盖的效果**
+
+- 全局变量和局部变量的区别
+
+  全局变量比较占内存，调用方便
+
+  局部变量更省内存，单使用的时候需要声明
+
+#### 作用域链
+
+也就是内部函数可以访问外部函数的机制，实现层层套娃
+
+在使用变量的时候是链式查找
+
+在内部调用一个变量的时候，它会从内向外查找，直到找到变量
+
+**其实也就是一个就近原则**
+
+### js预解析
+
+js的解析过程：进行预解析，再进行代码执行
+
+1. 步骤
+
+- js引擎会把js里面所有的 var 还有 fuction 提升到当前作用域的最前面
+-  代码执行 按照代码书写的顺序从上往下执行
+
+2. 预解析分为 变量预解析（变量提升） 和  函数预解析（函数提升）
+   - **变量提升：将变量的声明提升到当前作用域的最前面（只有声明，没有赋值），在对函数的另外一种声明中也遵循这个原则**
+   - **函数提升：将所有的函数声明提升到当前作用域的最前面（提升的只是用关键字的声明，函数表达式的形式无效）**
+   - 注意都是**当前作用域**
+
+#### 案例（重要）
+
+```js
+var a=b=c=9;
+//这条语句的结果是
+// var a=9;b=9;c=9;
+//这里a是局部变量，而b和c都是全局变量，这里就是赋值操作带来的区别
+```
+
+### 对象
+
+#### 概念
+
+对象是一个**具体**的事物（和类相比具有唯一性），特指
+
+类则是对象的抽象
+
+- 对象是一组无序的相关属性和方法的集合，所有的事物都是对象，字符串、数组、数值、函数等都是对象。
+
+  由属性（特性）和方法（行为）来定义
+
+- 
+
+- 类比c++结构体
+
+#### 创建对象
+
+```js
+//用花括号来进行对象的创建
+//以下是c++习惯带来的错误示范
+var obj={
+    var name='li';
+    var job='wizard';
+    function show{
+ console.log(name+job);   
+}
+}
+
+var obj = {
+     name :'li',//对象里面的变量不用再声明，赋值语句之间使用逗号分开,且赋值用冒号就可以
+     job :'wizard',
+    //函数的声明直接用 name:function{}就可以，不用再用关键字在前的那种方式
+     show: function () {
+       console.log(name + job);
+                        }
+           };
+//对象的一种调用方式和c++的方式基本相同
+obj.var;
+obj.fuc();
+obj.fuc;//这样会显示出对应函数（方法）的声明
+//对象调用的第二种方式
+obj['var'];//调用的时候必须要有引号
+obj['fuc()'];//这种形式不行
+```
+
+第二种，先声明
+
+```js
+var obj = new Object();//这里就创建了一个对象
+obj.uname = '';//里面的属性就可以这样直接赋值，没有数量的限制
+obj.fuc=function(){
+    
+}//创建函数的方法也和前面的方法基本相同，相当于obj就是一个var 的声明
+//不过这种方法创建对象都是使用等号赋值，而不是：
+//冒号的特权好像必须要在{}中，也就是在那个域里面的值默认都加上了var(弱类型的语言就是这样？)
+```
+
+第三种，利用构造函数来构建对象
+
+```js
+//相当于类和继承的关系
+//构造函数相当于类
+//例：创建四大天王对象
+function Name(形式参数){
+    this.var=xvar;
+    this.fuc=fuc_name(){
+        
+    }
+}
+//构造函数里面赋值都是使用等号，结尾是分号
+//名字一般是首字母大写（代码规范）
+```
+
+- 赋值语句的结尾都是分号？
+
+  
+
+
+
+#### new关键字
+
+- new在执行的时候的四个步骤
+
+  1. 在内存中创建一个新的空对象
+  2. 让this指向这个新的对象
+  3. 执行构造函数里面的代码，给这个新对象添加属性和方法
+  4. 返回这个新对象（所以构造函数不需要return）
+
+  我的理解：在内存里面找一个空间，指针指向这个空间，给这个空间赋值，返回空间的索引（地址）
+
+#### 遍历对象
+
+`for...in` 遍历对象
+
+```js
+for(var k in obj)
+{
+console.log(k);//得到的属性名
+console.log(obj[k]);//得到的属性名
+}
+```
+
+
+
+#### 案例
+
+### js内置对象
+
+- js中有三种对象：自定义对象、内置对象、浏览器对象
+- 前面两种是js基础的内容，第三个就是我们js独有的，对浏览器的内容进行操作
+- 内置对象就是js语言的自带的库，提供一些常用的方法和功能，帮助我们快速开发
+- math,date,array,string
+
+#### 查文档
+
+MDN文档（有中文）
+
+- 查询方法
+- 数据类型
+- 返回类型
+
+#### math对象
+
+- 常用的常数
+
+  ```js
+  Math.Pi//圆周率
+  ```
+
+- 常用的方法
+
+  ```js
+  Math.max(1,3,4,5,3);//得到的就是 5
+  Math.max(...arr);//这里得到的就是arr 数组里面的最大值，注意那三个点是语法规则，是必要的
+  Math.floor() ; //向下取整
+  //这里类似于c++里面的int作除法，直接取整
+  Math.ceil(); // 向上取整，往大了取整只要有小数部分就直接往上加一
+  Math.round();//四舍五入，这里面的四舍五入是往大的方向取整
+  //Math.round(-1.5)  这里结果是-1，也就是往大取整的体现
+  Math.abs();     //取绝对值
+  //Math.abs('-1'); 这条语句也能输出1，对于数字来说会进行隐式转换为数字,但如果有字符会转为NaN
+  
+  Math.random();//生成随机数的方法
+  ```
+
+#### 封装对象
+
+```js
+var myMath={
+    PI:3.1415926535,//对象的成员之间需要用逗号隔开
+    max:function(arguments)
+    {
+        var max=arguments[0];//方法声明的变量不受影响
+        for(var i=1;i<arguments.length;i++)
+            {
+                if(arguments[i]>max)
+                    {
+                        max=arguments[i];
+                    }
+            }
+        return max;
+    },
+    min :function(arguments){
+        var min=arguments[0];
+        for(var i=1;i<arguments.length;i++)
+            {
+                if(arguments[i]<min)
+                    {
+                        min=arguments[i];
+                    }
+            }
+        return min;
+    }
+}
+```
+
+date对象
+
+```js
+//创建一个date对象
+var date = new Date();
+//使用date对象自带的方法
+date.getFullYear();//返回现在的年
+date.getMonth();//返回现在的月
+date.getDay();//返回现在是哪天
+date.getHours();//返回现在的小时
+date.getMinutes();//返回现在是多少分钟
+date.getSeconds();//返回现在是多少秒
+
+//返回系统计时（从1970年到现在）
+date.getTime();
+date.valueOf();
+var date = +new Date();
+var date = +new Date(time); //这里的time是指从那时到time所用的时间
+var date = Date.now(); //这个是h5新增的特征，可能会有兼容性问题
+```
+
+
+
+#### 数组对象
+
+```js
+//创建数组对象
+1.字面量创建的方式
+var arr=[1,23,23,12];
+2.new 字符方法创建
+var arr= new Array(n);//这个n是指你给它留下的空间
+var arr= new Array(qwe,q,42,34);//可以在这个方法中加上你想给数组添加的元素，相当于字面量的方法
+
+3. 添加和删除
+var arr = new Array();
+arr.push();//在字符串后面添加元素，并返回增加后的字符长度
+arr.upshift();//在字符串的前面添加元素，并返回增加后的长度
+
+arr.pop();//在字符串的后面删除元素，并返回被删除的元素
+arr.shift();//在字符串的前面删除元素，并返回被删除的元素
+
+4.常用方法
+
+arr.reverse();//转置数组元素
+arr.sort();//内置排序元素,但是好像是根据字典序来排的，想要对数字排序需要自定一下排序条件
+arr.sort(function(a,b)
+        {
+    return a-b;//这里是降序排列，返回真就交换元素位置
+})
+
+返回数组元素索引方法
+1. indexOf('数组元素');//返回该数组元素的第一个索引号
+//如果没有就返回 -1
+2. lastIndexOf('数组元素');//返回数组元素的最后一个索引号（从后往前查找）
+
+
+数组转化为字符串
+
+var arr = [12,3,23,13,2];
+var str = arr.toString();//将数组转化为字符串
+
+arr.join();//可以给字符串的数组元素之间加上分割的符号，符号可以自定义
+arr.join(symbol);//symbol 就是你自定义的符号
+```
+
+- 数组去重案例
+
+  把旧数组里面不重复的元素放到新数组里面，遍历旧数组，把新数组里面没有的元素加到新数组中。
+
+  ```js
+  function unique(arr)
+  {
+      var newarr=[];
+      for(var i=0 ;i < arr.length;i++)
+          {
+              if( newArr.indexOf(arr[i]) == -1)
+                  {
+                      newArr.push(arr[i]);    
+                  }
+              
+          }
+  }
+  
+  //去重主要就是给已经出现过的数打上标记
+  c++版
+  #include <iosteam>
+  #include <map>
+  using namespace std;
+  void solve(arr[])
+  {
+      map<int,int > m;
+      int arr1[n];
+      for(int i=1;i<n;i++)
+          {
+              if(m[arr[i]]=1) continue;
+              m[arr[i]]=1;
+              arr1=arr[i];
+          }
+      return arr1[];
+  }
+  ```
+
+
+
+#### 字符串类型
+
+```js
+1. 字符串的不变性
+是指里面的字符串的内容存储的内存空间不会清楚，重新赋值只是重新开辟了一个新的空间
+
+2. 字符串中所有的方法，都不会修改字符串本身，任何方法都不会修改字符串的值；
+var str = 'lsdjfljdfla';
+str.indexOf('k',n);//后面的这个n指的是从某个位置开始往后查找
+
+```
+
+查找字符串'abcoefoxyozzopp'中所有o出现的位置以及次数
+
+- 算法
+
+  - 先查找第一个o出现的位置
+  - 然后只要 indexOf 返回的结果不是 -1 就继续往后查找
+  - 因为 indexOf 只能查找到第一个，所以后面的查找，利用第二个参数，当前索引加1，从而继续查找
+
+  ```js
+  function sr (str)
+  {
+      var cnt = 0 ,temp = 0;
+      do {
+          temp = str.indexOf('0',temp) + 1;
+          cnt++;
+          console.log(temp-1);
+      } while(str.indexOf('0') !== -1)
+      return cnt;
+  }
+  
+  //上面的代码不知道哪里出了问题
+  
+  var str = 'abcoefoxyozzopp';
+  var index = str.indexOf('o');
+  var num = 0;
+  while(index !== -1)
+      {
+          console.log(index);
+          num++;
+          index=str.indexOf('o',index+1);
+      }
+  console.log('o出现的次数是：' + num);
+  ```
+
+  根据位置返回字符
+  
+  ```js
+  // 根据位置返回字符
+  1.charAt(index)
+  var str = 'andy';
+  str.charAt(3);//得到 d
+  //遍历字符串
+  for (var i=0;i<length;i++)
+      {
+          console.log(str.charAt(i));
+      }
+  
+  2.charCodeAt(index) //返回对应位置的 ascll 码表
+  str.charCodeAt(index) 
+  //可以用于得知用户的输入符号
+  
+  3.str[] //这里可以直接得到字符，不过这个是H5新增的特性
+  
+  ```
+  
+  判断对象里面的属性是否存在
+  
+  ```js
+  var obj = {
+      agt: 19
+  }
+  if(obj['agt'])
+      {
+          console.log('里面有该属性');
+      } else {
+          console.log('里面没有该属性');
+      }
+  
+  //可以用这样的方式来直接判断对象里面是否有该属性
+  ```
+  
+  - 案例2
+  
+  ```js
+  //判断一个字符串 'abcoefoxyozzopp'中出现次数最多的字符，并统计其字数
+  核心算法：
+  1.利用对象的赋值来做一个map，将字符串里面出现过的字符赋值给一个对象，当字符再出现时就给属性的值加一
+  2.第一次便利给对象赋值完毕之后再将最大的那个属性找出来
+  
+  var str = 'abcoefoxyozzopp';
+  var o={};
+  for (var i=0 ; i<str.length;i++)
+      {
+          var chars = str.charAt(i);//将每一个字符取出来
+          if(o[chars])
+              {
+                  o[chars]++;//存在就加一
+              }else{
+                  o[chars]=1;//不存在就赋值为一
+              }
+      }
+  
+  //遍历对象
+  var max = 0;
+  var ch='';
+  for (var k in o)//遍历对象的方法
+      {
+          //k 得到的是属性名
+          //o[k]才是属性值
+         if(o[k]>max)
+             {
+                 max=o[k];
+                 ch=k;
+             }
+      }
+  ```
+
+##### 字符串操作方法（重点）
+
+```js
+1. concat ('字符串1'，'字符串2'，'字符串3')
+//相当于加号，拼接字符串
+2.arr.substr(start,length)
+//从start 位置开始（索引号），length是截取的个数
+3.replace('被替换的字符'，'替换为的字符')
+var str = 'andy';
+console.log(str.replace('a','b'));
+//替换字符串中的第一个字符
+4.字符串转换为数组 split('分隔符')
+var str = '1234';
+//可以将字符串转换成单个的数组元素，它会将字符串中与你分隔符相同的符号删除，并从那个位置进行分割
+//没有分割的符号的话split 方法会将字符串视为一个元素，无法分割
+
+```
+
+#### 数据类型之间的区别
+
+1. 简单类型与复杂类型
+
+   - 简单类型又叫做基本数据类型或者值类型，复杂类型又叫做引用类型
+
+     - 值类型：简单数据类型/基本数据类型，再存储时变量中存储的是值本身，因此叫做值类型
+     - string , number , boolean , undefined , null（返回值是对象）
+     - 引用类型:复杂数据类型，再存储变量的时候存储的仅仅只是地址（引用），因此叫做引用数据类型
+
+     通过new 关键字创建的对象（系统对象、自定义对象），如Object 、Array 、Date等
+
+     堆和栈：
+
+     1. 栈：有操作系统自动分配释放存放函数的参数值、局部变量的值等。其操作方式类似于数据结构中的栈
+     2. 堆：存储复杂类型（对象），一般由程序员分配释放，由垃圾回收机制回收
+
+     - 简单数据类型是直接指向栈中的值
+     - 复杂数据类型是将数据存储在堆中，而将地址存储在栈里面
+
+     ####  传参
+
+     - 简单数据类型传参对原数据没有影响
+     - 复杂数据类型传参会直接修改原来的数据
+
+     
+
+     
+
+     
+
+     
+
+#### 基本包装类型
+
+简而言之就是基本的库方法
+
+```js
+var temp = new String('');
+因为js把简单的数据类型包装为了复杂数据类型
+
+```
+
+### JS webApis
+
+
+
+- web api 和 js 基础关联性
+
+js 的基础语法是为了与webApis配合使用的
+
+- webApi 是 js 独有的部分
+
+##### API
+
+- api就是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或者硬件得以方位一组例程的能力，而又无需访问源码，了解里面的细节
+
+  
+
+### DOM
+
+DOM是文档对象模型，是处理可扩展标记语言的标准程序接口
+
+通过DOM接口可以改变网页的内容、样式等
+
+#### dom树
+
+- 文档：一个页面就是一个文档，DOM中使用doccument表示
+- 元素：页面中所有标签都是元素，DOM中使用element表示
+- 节点：网页中所有内容都是节点，DOM中使用node来表示
+
+DOM把以上内容都看作对象
+
+
+
+#### 如何获取网页元素
+
+```js
+1.根据id获取
+document.getElementByid( id )//可以获取带有ID的元素对象
+ //id 是大小写敏感的字符串，代表了所要查找的元素的唯一ID
+ //返回一个匹配到ID的 DOM Element对象。若在当前Documment下没有找到，则返回null
+//在写获取元素的时候，因为文档页面从上往下加载，所以先得有标签， 所以需要把script写到标签的下面
+//这个方法通过的是驼峰命名法
+document.getElementByid('time');//里面必须是字符串
+//返回的是对象
+console.dir(time);//这个函数可以打印我们返回的元素对象，更好的查看里面的属性和方法
+
+2.根据标签名获取
+ document.getElementsByTagName()//可以返回带有指定标签名的对象的集合
+//返回过来的是以伪数组形式存储的标签元素
+//得到的元素是动态的
+//如果页面中没有那个元素，那么返回的是一个空的伪数组
+可以指定父元素来获取对应父元素的子元素
+var ol = document.getElementsByTagName('ol');
+var li = ol[0].getElementsByTagName('li');//这样就可以通过指定的父元素来得到特定的子元素了
+//这里必须指定对象是哪一个，因为通过文档对象得到的都是伪数组的形式的对象
+//也可以根据Id选择父元素，再根据选中的父元素来得到子元素标签，id返回的元素不是伪数组
+
+```
+
+3.通过HTML5新增的方法获取
+
+​    可以通过类名获取
+
+```js
+document.getElementsByClassName('box');
+//通过类名选择
+
+
+document.querySelector('.class');//不加all只返回选中的第一个对象
+document.querySelectorAll('#id');
+//加了 all 之后就可以返回选中的所有元素
+document.querySelectorAll('li');
+注意点：使用querySelectorAll的时候需要对不同的选择器有所区分
+```
 
 
 
 
 
+4.特殊元素获取
+
+- 获取body元素
+
+  ```js
+  var bodyEle=document.body;
+  //可以直接得到body里面的内容，不用加参数
+  ```
+
+  
+
+- 获取html元素
+
+```js
+var htmlEle=document.documentElement;
+//html比较特殊，需要这个方法来返回对象
+```
+
+#### 事件基础
+
+事件是可以被js侦测到的行为
+
+触发-响应
+
+##### 事件的三部分
+
+- 事件源
+
+  事件被触发的对象
+
+- 事件类型
+
+  如何被处罚 什么事件 比如：鼠标经过触发 鼠标点击
+
+- 事件处理程序  
+
+  事件处理程序，一般通过一个函数赋值的方式来完成
+
+  例：
+
+  ```js
+  var btn = document.getElementById('btn');
+  btn.onclick=fuction()
+  {
+      alert('危险');
+  }
+  ```
+
+##### 执行事件的步骤
+
+1. 获取事件源
+2. 注册事件（绑定事件）
+3. 添加事件处理程序（采取函数赋值形式）
 
 
 
+#### 操作元素
+
+##### 修改元素内容
+
+```js
+element.innerText
+//从起始位置到终止位置的内容，但它去除html标签，同时空格和换行也会去去掉
+//它不识别html标签，会直接当作字符串显示出来
+element.innerHTML//这个是标准，用得更多
+//起始位置到终止位置的全部内容，包括html标签，同时保留空格和换行
+```
+
+- 这两个标签是可以读写的，但是读取出来的内容和它的具体的规则有关
 
 
 
+##### 常用元素的属性操作
+
+```js
+ 1.innerText、innerHtml 改变元素内容
+ 2.src 、 href
+ 3.id、 alt、title
+ 
+```
+
+##### 修改表单的属性
+
+```js
+//表单中的内容比较特殊，需要特别修改
+type 、value 、 checked selected、disabled
+```
+
+```js
+value 是表单里面的内容
+disabled 是被禁用，不能再被点击
+this.disabled = true;//this 指向的是函数的调用者
+
+```
+
+- 模仿京东改为文本框的案例
+
+  算法：利用一个flag变量，来判断flag的值，如果是1就切换为文本框，flag设置为0，反过来也一样
+
+  ```html
+  //点击按钮将密码框切换为文本框，就可以看见里面的密码
+  css 的一些属性：
+  type:text password outline 
+  ```
+
+  
+
+##### 修改样式
+
+```js
+1.element.style 行内样式操作
+2.element.className 类名样式操作
+```
+
+- js修改的样式属于行内样式，在样式冲突的时候以js 为准
+- js里面的样式采取驼峰命名法，比如fontSize 、backgroundColor
+- **修改的属性都要加上引号才能起作用**
+
+精灵图案例
+
+1. 精灵图的排布需要有规律
+2. 找到一点数学规律
+3. 使用for循环来调整精灵图的位置
+
+```js
+这里有一点比较重要的就是字符串拼接
+```
+
+显示隐藏文本框内容
+
+这里有两个新事件  
+
+onfocus 得到焦点 onblur 失去焦点
+
+ ```js
+         var inp = document.getElementById('input');
+         inp.onfocus = function () {
+             if (this.value === '手机')
+                 this.value = '';
+         }
+         inp.onblur = function () {
+             if (this.value === '')
+                 this.value = '手机';
+         }
+ 在具体功能的实现的时候要注意焦点的变化带来的内容的变化，
+ 可以设计一下回复的条件
+ ```
+
+- 使用className修改样式
+
+  ```js
+  element.className='change';
+  可以让当前的这个元素的类名改为change ，批量修改样式
+  ```
+
+  注意点：
+
+  1. 如果需要修改的样式较多，可以考虑这种方法
+  2. 修改的样式需要 className 这个方法
+  3. **在修改的时候元素原来所有的样式都会被新的样式替换，要注意这一点**
+
+  **如果想要保留原来的类名，就把原来的类名也加上，这个语法符合多类名的要求**
+
+  *设置密码提示错误案例*
+
+1. 首先判断的触发条件是失去焦点
+2. 如果输入真确则提示正确的小图标变为绿色
+3. 如果不是 6 到 16 位 ，那么就让图标变为错误的信息
+4. 这里的核心在于可以用字符串长度来判断输入的位数的信息
+
+```js
+innerHtml//可以用来修改需要保留样式的文字
+innerText
+```
+
+##### 总结
+
+1. 操作元素内容
+   - innerText
+   - innerHTML
+2. 操作常见元素属性
+   - 常见的元素属性都是可以获取和修改的
+3. 操作表单元素属性
+   - 主要就是表单里面的那几个元素和属性
+4. 操作元素样式属性
+   - element.style
+   - element.className
+
+##### 排他思想
+
+在出现多个按钮的选择的时候
+
+可以使用 **for循环** 来给元素绑定事件
+
+```js
+var btns = document.getElementsBytagName()
+for(var i = 0 ; i<btns.length;i++)
+    {
+        btns[i].onclick = function()
+        {
+            for(var j = 0 ;j<btns.length;j++)
+                {
+                    btns.[i].backgroundColor='';
+                    //这里是先将其他元素的颜色去掉
+                }
+            btns[i].backgroundColor='pink';
+        }
+    }
+```
 
 
 
+*百度换肤案例*
+
+```js
+var imgs=document.querySelector('.baidu').querySelectorAll('li');
+//这里也可以直接递进选取
+可以直接获取到图片的地址
+this.src//可以直接获取到图片
+然后同样可以使用字符串拼接的方式来给背景图片元素赋值
+```
+
+*表格隔行变色*
+
+1. 两个新事件：onmouseover 鼠标经过   onmouseout 鼠标离开
+2. 核心思路：鼠标经过 tr 行 ，当前的行变背景颜色，鼠标离开去掉当前的背景颜色
+3. thead是不用改变颜色的
+
+```js
+1.获取元素
+选中tbody，然后递进选中tr
+var trs = document.querySelector('tbody').querySelectorAll('tr');
+for(var i = 0 ;i<trs.length;i++)
+    {
+        trs[i].onmouseover =function (){
+            
+        }
+        trs[i].onmouseout = function()
+        {
+            this.className = 'change';
+        }
+    }
+//这个案例里面建议改变样式在css里面进行，进一步实现结构，效果，样式的分离
+```
 
 
 
+*全选和取消全选的案例*
+
+1. 全选和取消全选的做法：让点击全选之后的复选框都选中，反之则选不选中
+
+2. 下面复选框所有的复选框需要全部选中，上面才能全部选中：需要给每一个按钮都绑定一个事件，每次选中的时候都检查；
+
+```js
+        for (var i = 0; i < bts.length; i++) {
+            bts[i].onclick = function () {
+                var flag = true;
+                for (var i = 0; i < bts.length; i++) {
+                    if (!bts[i].checked) {
+                        flag = false;
+                        break;//只要有一个没被选中就不用判断了
+                    }
+                    al.checked = flag;
+
+                }
+            }
+        }//这里有一个flag变量的用法
+```
+
+##### 自定义属性的操作
+
+1. 获取属性值
+
+   1. element.属性
+
+      这个主要获取的是内置属性
+
+   2. element.getAttribute('属性');
+
+      这个主要获取的是自定义属性
+
+2. 修改属性值
+
+   可以直接对获取的属性值再赋值就可以了
+
+   - element.属性=‘新的值’
+   - element.setAttribute('属性'，'值')；
+
+3. 移除属性值
+
+   - element.removeAttribute('属性');
+
+tab*栏切换案例*
+
+1. tab 栏切换有两个大的模块
+
+2. 上的模块选项卡，点击某一个，当前这一个底色会是红色，其余不变（排他思想）修改类名的方式
+
+3. 下面的模块内容，会跟随上面的选项卡变化，所以下面模块变化写到事件里面
+
+4. 规律：下面模块的显示内容和上面的选项卡一一对应，相匹配
+
+5. 核心思路：给上面的tab_list 里面所有的小 li 添加自定义属性，属性值从0开始编号
+
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+   
+   <head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Document</title>
+       <style>
+           * {
+               list-style: none;
+               margin: 0;
+               padding: 0;
+           }
+   
+           .tab_nav {
+               width: 1100px;
+               height: 166px;
+               margin: 200px auto;
+           }
+   
+           .tab_nav .tab_list {
+               height: 44px;
+               background-color: rgb(238, 241, 238);
+               border-bottom: 1px solid rgb(228, 230, 228);
+               /* text-align: center;
+               line-height: 45px; */
+           }
+   
+           .tab_nav .tab_list li {
+               float: left;
+               height: 43px;
+               padding: 0 6px;
+               text-align: center;
+               line-height: 45px;
+               font-size: 16px;
+               cursor: pointer;
+           }
+   
+           .tab_content {
+               padding: 20px 0 0 20px;
+           }
+   
+           .item {
+               display: none;
+           }
+   
+           .current {
+               color: white;
+               background-color: rgb(214, 39, 31);
+           }
+   
+           .display {
+               display: block;
+           }
+   
+           .nodisplay {
+               display: none;
+           }
+       </style>
+   </head>
+   
+   <body>
+       <div class="tab_nav">
+           <div class="tab_list">
+               <ul>
+                   <li class="current">商品介绍</li>
+                   <li>规格与包装</li>
+                   <li>售后保障</li>
+                   <li>商品评价</li>
+                   <li>手机社区</li>
+               </ul>
+           </div>
+           <div class="tab_content">
+               <ul>
+                   <li class="item" style="display:block">商品介绍模块内容</li>
+                   <li class="item">规格与包装模块内容</li>
+                   <li class="item">售后保障模块内容</li>
+                   <li class="item">商品评价模块内容</li>
+                   <li class="item">手机社区模块内容</li>
+               </ul>
+           </div>
+       </div>
+       <script>
+           var lis = document.querySelector('.tab_list').querySelectorAll('li');
+           var content = document.querySelector('.tab_content').querySelectorAll('.item');
+           // console.log(content);
+           for (var i = 0; i < lis.length; i++) {
+               lis[i].setAttribute('index', i);
+               lis[i].onclick = function () {
+                   for (var i = 0; i < lis.length; i++) {
+                       lis[i].className = '';
+                       content[i].style.display = 'none';//这里使用类的方式进行修改的话不能改变预定设置的类属性
+                       //直接对属性赋值的优先级好像要高于对类的修改
+                   }
+                   this.className = 'current';
+                   var ind = this.getAttribute('index');
+                   // console.log(ind);
+                   content[ind].style.display = 'block';
+               }
+           }
+       </script>
+   </body>
+   
+   </html>
+   ```
+
+   
+
+   **收获**
+
+   - 掌握了tab栏的布局方法
+   - **直接通过属性赋值的优先级好像要高于通过类的赋值修改**
+
+##### h5的自定义属性
+
+自定义属性可以通过 element.getAttribute( ) 来获取
+
+但是在实际开发的过程中容易混淆
+
+所以h5中为大家添加了一个自定义属性的规范
+
+```js
+1. date-自定义属性//也就是使用date- 开头的都是自定义属性
+2. h5新增element.dataset.index 或者element.dataset['index']
+//可以获得一个自定义属性的集合，可以直接获得
+//dataset 是一个集合，里面存放了所有的自定义属性
+//如果自定义属性里面有多个-链接的单词，我们获取的时候采取的是驼峰命名法
+< div data-index-time='20'></div>
+    var div = document.getElementByTagname('div');
+   var time = div.dataset.indexTime;
+   这样就可以直接获取到自定义的值
+   
+```
+
+注意**这里是data ，不是date**
+
+#### 结点操作
+
+1. 为什么学习结点操作
+
+   获取元素：
+
+   1. 使用 dom 提供的方法获取元素，前面学习的方法都是
+   2. 利用结点的层次获取元素
+      - 可以利用父子结点关系进行获取元素
+      - 操作更有逻辑性
+
+2. 结点模型
+
+   标签、元素是元素节点
+
+   文本是文本节点
+
+   属性是属性节点
+
+   一般结点一般需要有几个属性：结点类型（nodeType） 、结点名称(nodeName)、结点值(nodeValue) 三个基本属性
+
+   - 元素节点 nodeType 为1
+   - 属性节点 nodeType 为2
+   - 文本结点 nodeType 为3 （文本节点包括文字、空格、换行等）
+
+   我们一般都是获取**元素节点**
+
+         ##### 节点层级
+
+- 常见的是**父子层级关系**
+
+  ```js
+  1. 父节点 parentNode  //得到的是距离元素最近的父亲节点 
+  <div class='demo'>
+      <span class='erweima'>x</span>
+      </div>
+  var erweima = document.querySelector('.erweima');
+  erweima.parentNode;//这样就可以直接获得 demo ，也就是它的父亲级盒子
+  ```
+
+  获取子节点
+
+  ```js
+  1. childNodes
+  element.childNodes;就可以直接获取到子节点
+  但是获得的是所有类型
+  
+  
+  2.判断类型 element.childNodes[n].NodeType,可以获得节点的类型
+  
+  3. 非标准，但是浏览器基本上都支持，可以看作一种通用写法
+  element.children ;//可以只获得第一类节点，在开发中更常用，各个浏览器也支持
+  
+  ```
+
+  - 获取第一个和最后一个元素
+
+    ```js
+    1. 首先是默认的写法
+    element.firstChild 
+    element.lastChild
+    //上面这两种方法获取到的节点包含文本节点，操作起来得不到我们想要的效果
+    2. 可以直接获得元素的写法
+    element.firstElementChild
+    element.lastElementChild
+    //这两种方法可以直接获得第一个元素和最后一个元素
+    //但是具有兼容性的问题，只有IE9以上的版本才支持
+    3. 开发常用的写法
+    element.childern[0];
+    element.children[element.children.length - 1];
+    //这一种方法则是直接使用前面的这获取元素的方法，利用数组元素的关系来进行获取
+    //前面获取到第一个元素，后面的获取到最后一个元素
+    ```
+
+    案例：下拉菜单
+
+    这里布局出了一点小问题，没能把布局搞出来
+
+    ```js
+    var nav = document.querySelector('.nav');
+    //这样写的主要原因是布局的时候是使用一个大的ul来作为nav
+    //然后在里面加上一个 a 来表示选择栏， 再用一个ul和li来表示内容
+    //所以是nav[i].childre[1],也就是第二个元素是内容，在鼠标经过的时候显示，反之隐藏
+    for(var i = 0 ;i<nav.length;i++)
+        {
+            nav[i].onmouseover = function ()
+            {
+                nav[i].children[1].display='block';
+            }
+            nav[i].onmouseout = function()
+            {
+                nav[i].children[1].display='none';
+            }
+        }
+    ```
+
+##### 兄弟节点
+
+```js
+1. 还是默认
+element.previousSibling ;
+element.nextSibling;
+//默认的获取兄弟元素的方法，还是包含文本节点
+2.加上元素的属性
+element.previousElementSibiling;
+element.nextElementSibiling;
+//这个方法可以获取元素，但是同样有兼容性问题
+3.封装一个函数
+function nextSibiling(element)
+{
+    var el = element;
+    while(el.nextSibiling)
+        {
+            if(el.nextSibiling.NodeType==1)
+                {
+                    return el.nextSibiling;
+                }
+        }
+    return null;
+}
+```
+
+##### 创建节点
+
+在页面里创建一个元素分为两步：创建元素、添加元素
+
+```js
+1. 创建元素
+document.creatElement('创建的元素');
+//这样只是创建了一个元素，并没有将它添加到页面中
+
+2. 添加元素
+element.appendChild(child);
+//这个是将床架的元素添加到父元素的子元素的尾部，也称为尾部添加
+element.insertBefore(要插入的元素,插入的位置);
+//这里面不能加上分号
+//这个方法则是会将元素添加到对应元素的前面
+
+```
+
+##### 删除节点
+
+```js
+语法：
+node.removeChild(child);
+这样是从父节点中删除子节点
+```
+
+案例：删除留言
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="">
+    <a href=""></a>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        var text = document.querySelector('input');
+        var btn = document.querySelector('button');
+        var ul = document.querySelector('ul');
+        btn.onclick = function () {
+            if (text.value == '') {
+                alert('您没有输入内容');
+                return false;
+            } else {
+
+                var li = document.createElement('li');
+                li.innerHTML = text.value + "<a href='javascript:;'>删除</a>";
+                ul.insertBefore(li, ul.children[0]);
+
+                // 在前面插入
+                // ul.appendChild(li);
+                // 前面这一行代码是在后面插入
+                //接下来添加删除功能
+                // 1. 获取元素
+                var as = document.querySelectorAll('a');//获取到页面里面所有的a元素,要用ALL
+                // 2.注册事件
+                console.log(as);
+                for (var i = 0; i < as.length; i++) {
+                    as[i].onclick = function () {
+                        //注意这个方法的语法规范，是删除父元素里面的孩子，这里删除的是a对应的li，是a的父元素，而li的父元素是ul，所以才这么写
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
+```
 
 
 
+- 注意点：
+  1. querySelectorAll 的用法
+  2. node.removeChild(child) 的语法规范
 
+##### 复制节点
 
+- node.cloneNode();
 
+  这个方法有语法规范，node.cloneNode(true)；是深拷贝，可以连标签里面的内容一起赋值
 
+  而在括号里面如果不加上参数 true ,默认为false ，也就是浅拷贝，只会赋值标签结构，而不会复制标签里面的内容
 
+  ```js
+  node.cloneNode(true);//深拷贝
+  node.cloneNode()/node.cloneNode(false);//浅拷贝
+  ```
 
+  案例：动态生成单元格
+  
+  ```js
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+          table {
+              border: 1px solid #ccc;
+          }
+  
+          table th,
+          td {
+              border: 1px solid #ccc;
+              text-align: center;
+              font-weight: 600;
+          }
+  
+          table th {
+              background-color: #ccc;
+              padding: 0 30px;
+          }
+      </style>
+  </head>
+  
+  <body>
+      <table cellspacing="0">
+          <thead>
+              <tr>
+                  <th>姓名</th>
+                  <th>科目</th>
+                  <th>分数</th>
+                  <th>操作</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table>
+      <script>
+          var stu = [
+              {
+                  name: 'nick',
+                  disciplin: 'javascript',
+                  score: 99
+              },
+              {
+                  name: 'leon',
+                  disciplin: 'javascript',
+                  score: 98
+              },
+              {
+                  name: 'frank',
+                  disciplin: 'javascript',
+                  score: 88
+              }
+          ]
+          var tbody = document.querySelector('tbody');
+          for (var i = 0; i < stu.length; i++) {
+              var tr = document.createElement('tr');
+              tbody.appendChild(tr);
+              for (var k in stu[i]) {
+                  var td = document.createElement('td');
+                  td.innerHTML = stu[i][k];
+                  //因为 k in stu[i] 这个语法 是用于在对象里面遍历属性，而这里的stu[i]带表的就是每一对象，这样添加就可以完成表格的填充了
+                  tr.appendChild(td);
+              }
+              var td = document.createElement('td');
+              td.innerHTML = '<a href="javascript:;">删除</a>';
+              tr.appendChild(td);
+          }
+          var as = document.querySelectorAll('a');
+          for (var i = 0; i < as.length; i++) {
+              as[i].onclick = function () {
+  
+                  //    还是要注意这个移除节点的语法规范
+                  //    需要的是删除元素的父节点来移除它的子节点，写出来的两个关键点必须要有，你要删除的节点是谁，它的父节点又是谁，怎样定位
+                  tbody.removeChild(this.parentNode.parentNode);
+              }
+          }
+      </script>
+  </body>
+  
+  </html>
+  ```
+  
+  ##### 三种创建元素方式的区别
+  
+  ```js
+  document.write();
+  //如果是在页面加载，这种方式会导致页面重绘
+  element.innerHTML 
+  //用这种方式新建元素的话，使用数组的形式赋值效率会很高，
+  //但如果直接使用直接使用字符串拼接的方式进行赋值的话效率会非常低
+  document.creatElement();
+  //使用这种方式创建元素的效率适中，结构更清晰
+  ```
 
+##### DOM的重点核心
 
+添加元素、增删改查、自定义属性、事件
 
+#### 事件高级
 
+##### 使用侦听器添加事件
 
+- 好处：同一个元素，同一个事件，可以对应多个触发函数，实现更多功能
 
+  ```js
+  evenTarget.addEventListener('type'，function,useCapture);
+  //这个就是监听器函数的具体形式，其中type代表的是事件类型，必须不加on的是字符串形式，而function就是添加的函数，而useCapture是一个布尔型参数，默认是false，后面会讲
+  
+  attchEvent('onType',function);
+  //只有ie9之前的浏览器支持
+  ```
 
+##### 移除事件
 
+- 这里主要的目的是用来实现只能触发一次的功能
 
+  有三种移除方法，对应三种注册的方法
 
+  ```js
+  1. 传统方法的移除
+  语法：element.onEvent=null;
+  也就是让删除对应的函数，破坏事件三要素
+  element.onclick = function()
+  {
+      this.onclick=null;
+  }
+  2.监听事件的解绑方式
+  removeEventListener('type',function,useCapture);
+  //也就是和add相对的move方法,不过这里的function 对应的是函数名，所以需要把函数写到它的外边
+  addEventListener('click',fn);
+  function fn ()
+  {
+      alert('fdfjalfdj');
+      removeEventListener('click',fn);
+      //加上这行代码就可以完成事件的移除了
+  }
+  
+  3. 兼容ie9以下版本的操作
+  detachEvent('onclick',fn);
+  //例
+  attchEvent('onclick',fn2);
+  function fn2()
+  {
+      alert('23rfsdf');
+      detachEvent('onclick',fn2); 
+  }
+  ```
 
+##### dom的事件流
 
+事件在节点之间传播的顺序称为事件流
 
+执行的顺序：
 
+1. 接受阶段
 
+   触发事件的信息最开始由文档节点收到，然后逐层向下传播，直到找到事件
 
+2. 冒泡阶段
+
+   在事件的信息传送到对应的元素之后，元素返回事件触发的结果，逐层往上返回变化
+
+##### 事件流的一些细节
+
+- js只会执行事件流的两个阶段中的一种，要么是捕获阶段，要么是冒泡阶段
+- onclick 和 attchEven 都只能关注冒泡事件
+- addEventListener 当它的 useCapture 的参数为true 的时候，就可以监听到捕获阶段的事件
+- 实际开发中很少关注事件的捕获，更多关注的是事件的冒泡阶段
+- 有一些事件是没有冒泡阶段的，比如 onfocus 、onmouseleave 等
+- 事件的冒泡有时会带来麻烦，需要解决
+
+##### 事件对象
+
+事件对象是指触发的事件本身，这个事件带有触发事件的相关信息和一些方法
+
+```js
+element.onclick = function (event)//这里传递的对象只是形参，它是在事件绑定的时候就自动生成的
+//里面的参数名称可以是任意的，比如e 、evt等等
+{
+     console(event);
+}
+
+addEventListener ('click',function(e){
+    console(e);//监听器的获取方式和传统方式相同
+})
+
+//考虑ie678 的兼容性写法
+attchEvent('onclick',function(e)
+          {
+      e = e || window.event;//这里利用的是赋值表达式，如果前面一个不支持，就会返回false，执行或语句，所以就可以得到第二种结果，照顾到老版本的浏览器
+}
+          )
+```
 
 
 
@@ -1797,70 +3081,6 @@ function name {
 
 # 菜鸟js
 
-<<<<<<< HEAD
-### js数据类型
-
-- 当您声明新变量时，可以使用关键词 "new" 来声明其类型：
-
-#### 对象
-
-- js中也是万物皆对象，变量是对象的容器
-- 定义对象可以跨越多行，空格和换行不是必须的
-
-##### 对象方法
-
-对象方法作为一个函数调用 `person.method()`
-
-访问属性则是 `person.method`
-
-```html
-method : function(){
-//对象方法
-}
-```
-
-- 当对象里面没有同名属性且调用方法没有加上名称的时候
-
-  回返回方法的定义（也就是我们写在方法中的那些算式）
-
-#### 函数
-
-函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>测试实例</title>
-<script>
-function myFunction()
-{
-    alert("Hello World!");
-}
-</script>
-</head>
- 
-<body>
-<button onclick="myFunction()">点我</button>
-</body>
-</html>
-```
-
-- JavaScript 对大小写敏感。关键词fuction必须时小写的，并且必须以与函数名称相同的大小写来调用函数
-
-  函数同样可以传入参数
-
-```html
-myFuction(var 1,var 2)//中间用逗号分隔， 把参数作为变量来声明
-{
- //代码
-}
-```
-
-和c++差不多，不过没有要求返回值的类型
-
-=======
 
 
 ### js数据类型
@@ -1929,4 +3149,4 @@ myFuction(var 1,var 2)//中间用逗号分隔， 把参数作为变量来声明{
 
 
 和c++差不多，不过没有要求返回值的类型
->>>>>>> 270fed9590008cd55e534f901816c513f5f9b2b7
+

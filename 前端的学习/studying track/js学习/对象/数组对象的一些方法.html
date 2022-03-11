@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sr(str) {
+            var cnt = 0, temp = 0;
+            do {
+                temp = str.indexOf('o', temp) + 1;
+                cnt++;
+                console.log(temp - 1);
+            } while (str.indexOf('o') !== -1);
+            return cnt;
+        }
+        var str = 'abcoefoxyozzopp';
+        console.log(sr(str));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

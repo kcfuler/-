@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tab_nav {
+            width: 1100px;
+            height: 166px;
+            margin: 200px auto;
+        }
+
+        .tab_nav .tab_list {
+            height: 44px;
+            background-color: rgb(238, 241, 238);
+            border-bottom: 1px solid rgb(228, 230, 228);
+            /* text-align: center;
+            line-height: 45px; */
+        }
+
+        .tab_nav .tab_list li {
+            float: left;
+            height: 43px;
+            padding: 0 6px;
+            text-align: center;
+            line-height: 45px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .tab_content {
+            padding: 20px 0 0 20px;
+        }
+
+        .item {
+            display: none;
+        }
+
+        .current {
+            color: white;
+            background-color: rgb(214, 39, 31);
+        }
+
+        .display {
+            display: block;
+        }
+
+        .nodisplay {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab_nav">
+        <div class="tab_list">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_content">
+            <ul>
+                <li class="item" style="display:block">商品介绍模块内容</li>
+                <li class="item">规格与包装模块内容</li>
+                <li class="item">售后保障模块内容</li>
+                <li class="item">商品评价模块内容</li>
+                <li class="item">手机社区模块内容</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var lis = document.querySelector('.tab_list').querySelectorAll('li');
+        var content = document.querySelector('.tab_content').querySelectorAll('.item');
+        // console.log(content);
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].onclick = function () {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                    content[i].style.display = 'none';//这里使用类的方式进行修改的话不能改变预定设置的类属性
+                    //直接对属性赋值的优先级好像要高于对类的修改
+                }
+                this.className = 'current';
+                var ind = this.getAttribute('index');
+                // console.log(ind);
+                content[ind].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

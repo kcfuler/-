@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <span class="erweima"></span>
+    </div>
+    <script>
+        // dom获取元素
+        // var box = document.getElementsByClassName('box');这样也可以获取，不过需要注意的是不用加上 . 来表示类名的获取
+        // 但是这种获取的方法基本上获取到的元素都不能使用后面所学的功能
+        var box = document.querySelector('.box');
+        console.log(box);
+        var erweima = document.querySelector('.erweima');
+        console.log(erweima);
+        //node获取元素
+        // 1. 子节点 childNodes 所有的子节点 包含 元素节点 文本节点等
+        console.log(box.childNodes);
+        console.log(box.childNodes[1].nodeType);//可以用于判断node获得的文本类型
+    </script>
+</body>
+
+</html>

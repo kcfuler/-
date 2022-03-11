@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button id="btn">我被选中了</button>
+    <script>
+        var bt = document.getElementById('btn');
+        var cont = 0;
+        bt.onclick = function () {
+            console.log('wfdfadffjalsdjf');
+            bt.innerText = 'hahahaha';
+            cont++;
+            if (cont >= 5) {
+                bt.innerText = '别点了别点了';
+            } if (cont >= 10) {
+                bt.innerText = '你怕不是有什么大病';
+            }
+        }
+    </script>
+</body>
+
+</html>

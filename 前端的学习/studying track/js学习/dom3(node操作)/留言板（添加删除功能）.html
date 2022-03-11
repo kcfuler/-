@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="">
+    <a href=""></a>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        var text = document.querySelector('input');
+        var btn = document.querySelector('button');
+        var ul = document.querySelector('ul');
+        btn.onclick = function () {
+            if (text.value == '') {
+                alert('您没有输入内容');
+                return false;
+            } else {
+
+                var li = document.createElement('li');
+                li.innerHTML = text.value + "<a href='javascript:;'>删除</a>";
+                ul.insertBefore(li, ul.children[0]);
+
+                // 在前面插入
+                // ul.appendChild(li);
+                // 前面这一行代码是在后面插入
+                //接下来添加删除功能
+                // 1. 获取元素
+                var as = document.querySelectorAll('a');//获取到页面里面所有的a元素,要用ALL
+                // 2.注册事件
+                console.log(as);
+                for (var i = 0; i < as.length; i++) {
+                    as[i].onclick = function () {
+                        //注意这个方法的语法规范，是删除父元素里面的孩子，这里删除的是a对应的li，是a的父元素，而li的父元素是ul，所以才这么写
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

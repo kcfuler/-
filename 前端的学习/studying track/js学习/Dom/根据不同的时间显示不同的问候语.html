@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div><img src="" alt="" id="imge"></div>
+    <p id="tex"></p>
+    <script>
+        var imge = document.getElementById('imge');
+        var tex = document.getElementById('tex');
+        var dat = new Date();
+        var h = dat.getHours();
+        if (h < 12) {
+            imge.src = 'imges/1.png';
+            tex.innerHTML = 'Good morning';
+        } else if (h < 18) {
+            imge.src = 'imges/2.png';
+            tex.innerHTML = '下午好';
+        } else {
+            imge.src = 'imges/3.png';
+            tex.innerHTML = 'Good evening';
+        }
+        console.log(h);
+    </script>
+</body>
+
+</html>
